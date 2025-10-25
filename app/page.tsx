@@ -562,7 +562,7 @@ export default function Home() {
   }
 
   const handleCafeSelection = (cafe) => {
-    setSelectedCafe(cafe)
+    setSelectedCafe(cafe.name)
     setShowCafeMenu(true)
   }
 
@@ -1132,7 +1132,7 @@ export default function Home() {
                   {cafes.map((cafe) => (
                     <button
                       key={cafe.id}
-                      onClick={() => setSelectedCafe(cafe)}
+                      onClick={() => setSelectedCafe(cafe.name)}
                       className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-pink-50 hover:border-pink-300 transition-colors"
                     >
                       <h4 className="font-medium">{cafe.name}</h4>
@@ -1244,3 +1244,5 @@ export default function Home() {
     </main>
   )
 }
+
+
