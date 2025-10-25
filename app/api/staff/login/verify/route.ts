@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { StaffVerifyOtpSchema } from "@/lib/validation";
+import { StaffVerifyOtpSchema } from "../../../../../lib/validation";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
@@ -8,5 +8,6 @@ export async function POST(req: NextRequest) {
   // TODO: верификация кода; пока  успех
   return NextResponse.json({ token: "stub.jwt.token" });
 }
+
 
 
