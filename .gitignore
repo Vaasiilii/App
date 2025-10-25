@@ -83,3 +83,18 @@ jspm_packages/
 
 # TernJS port file
 .tern-port
+
+# Dependencies
+node_modules/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Vercel project settings (локальные)
+.vercel
+
+# Build artifacts (иногда появляются)
+out/
+dist/
