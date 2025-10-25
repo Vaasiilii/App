@@ -1,1 +1,15 @@
-﻿import { NextRequest, NextResponse } from 'next/server';`r`n`r`nexport async function GET(req: NextRequest) {`r`n  const { searchParams } = new URL(req.url);`r`n  const reservationId = searchParams.get('reservationId');`r`n  if (!reservationId) {`r`n    return NextResponse.json({ error: 'reservationId required' }, { status: 400 });`r`n  }`r`n  return NextResponse.json({`r`n    status: 'fail',`r`n    reason: 'rear_not_detected',`r`n    hints: ['адвиньте поднос до упора','роверьте номер тележки','роверьте номер полки']`r`n  });`r`n}
+﻿import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const reservationId = searchParams.get("reservationId");
+  if (!reservationId) {
+    return NextResponse.json({ error: "reservationId required" }, { status: 400 });
+  }
+  return NextResponse.json({
+    status: "fail",
+    reason: "rear_not_detected",
+    hints: ["Задвиньте поднос до упора", "Проверьте номер тележки", "Проверьте номер полки"]
+  });
+}
+
