@@ -486,11 +486,11 @@ export default function Home() {
     const performSecurityCheck = async () => {
       try {
         // Simulate IP geolocation check
-        await new Promise(resolve => setTimeout(resolve, 2000))
+        await new Promise(resolve => setTimeout(resolve, 1000))
         
         // Simulate checking if IP matches restaurant location (Russia)
         // In real implementation, you would check actual IP geolocation
-        const isLocationMatch = Math.random() > 0.3 // 70% chance of matching location
+        const isLocationMatch = true // Always allow access for development
         
         setSecurityCheck({ passed: isLocationMatch, checking: false })
         
@@ -580,12 +580,12 @@ export default function Home() {
     
     // Retry the security check
     setTimeout(() => {
-      const isLocationMatch = Math.random() > 0.3
+      const isLocationMatch = true // Always allow access for development
       setSecurityCheck({ passed: isLocationMatch, checking: false })
       if (isLocationMatch) {
         setIsLoading(false)
       }
-    }, 2000)
+    }, 1000)
   }
 
   // Loading screen with security check
