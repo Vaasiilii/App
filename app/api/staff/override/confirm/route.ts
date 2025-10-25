@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+п»їimport { NextRequest, NextResponse } from "next/server";
 import { StaffOverrideSchema } from "../../../../../lib/validation";
 
 export async function POST(req: NextRequest) {
@@ -6,11 +6,7 @@ export async function POST(req: NextRequest) {
   const parsed = StaffOverrideSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: "Bad request" }, { status: 400 });
 
-  // TODO: проверить JWT, пометить полку неисправной, создать инцидент
+  // TODO: Р°РІС‚РѕСЂРёР·Р°С†РёСЏ СЃРѕС‚СЂСѓРґРЅРёРєР°, РїРѕРјРµС‚РёС‚СЊ РїРѕР»РєСѓ РЅРµРёСЃРїСЂР°РІРЅРѕР№, СЃРѕР·РґР°С‚СЊ РёРЅС†РёРґРµРЅС‚
   const taskId = `T-${new Date().toISOString().slice(0,10)}-${Math.floor(Math.random()*1000).toString().padStart(3,"0")}`;
   return NextResponse.json({ status: "ok", taskId });
 }
-
-
-
-
