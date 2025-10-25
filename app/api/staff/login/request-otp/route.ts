@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { StaffRequestOtpSchema } from "../../../../../lib/validation";
+import { StaffRequestOtpSchema } from "@/lib/validation";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
@@ -8,4 +8,5 @@ export async function POST(req: NextRequest) {
   // TODO: отправка реального OTP
   return NextResponse.json({ sent: true });
 }
+
 
