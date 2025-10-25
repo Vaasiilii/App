@@ -35,7 +35,7 @@ const content = {
     footer: { copyright: "© 2024 TrayReturn. All rights reserved." },
     modals: {
       signIn: "Sign In", email: "Email", phone: "Phone Number", cancel: "Cancel",
-      selectTrolley: "Select Trolley", close: "Close", bookShelf: "Book Shelf",
+      selectTrolley: "Select Trolley", close: "Close", bookShelf: "Tray Shelf",
       availableShelves: "Available Shelves:", confirmTrayPlacement: "Confirm Tray Placement",
       instructions: "Instructions:", sensorCheck: "Sensor Check:", confirmPlacement: "Confirm Placement",
       checkingPlacement: "Checking Placement", complete: "Complete", placementConfirmed: "Placement Confirmed",
@@ -74,8 +74,8 @@ const content = {
     },
     footer: { copyright: "© 2024 TrayReturn. Все права защищены." },
     modals: {
-      signIn: "Войти", email: "Email", phone: "Номер телефона", cancel: "Отмена",
-      selectTrolley: "Выбрать тележку", close: "Закрыть", bookShelf: "Забронировать полку",
+      signIn: "Войти", email: "Электронная почта", phone: "Номер телефона", cancel: "Отмена",
+      selectTrolley: "Выбрать тележку", close: "Закрыть", bookShelf: "Полка для подноса",
       availableShelves: "Доступные полки:", confirmTrayPlacement: "Подтвердить размещение подноса",
       instructions: "Инструкции:", sensorCheck: "Проверка датчика:", confirmPlacement: "Подтвердить размещение",
       checkingPlacement: "Проверка размещения", complete: "Завершено", placementConfirmed: "Размещение подтверждено",
@@ -115,7 +115,7 @@ const content = {
     footer: { copyright: "© 2024 TrayReturn. 版权所有。" },
     modals: {
       signIn: "登录", email: "邮箱", phone: "电话号码", cancel: "取消",
-      selectTrolley: "选择手推车", close: "关闭", bookShelf: "预订货架",
+      selectTrolley: "选择手推车", close: "关闭", bookShelf: "托盘货架",
       availableShelves: "可用货架：", confirmTrayPlacement: "确认托盘放置",
       instructions: "说明：", sensorCheck: "传感器检查：", confirmPlacement: "确认放置",
       checkingPlacement: "检查放置", complete: "完成", placementConfirmed: "放置已确认",
@@ -155,7 +155,7 @@ const content = {
     footer: { copyright: "© 2024 TrayReturn. 모든 권리 보유." },
     modals: {
       signIn: "로그인", email: "이메일", phone: "전화번호", cancel: "취소",
-      selectTrolley: "트롤리 선택", close: "닫기", bookShelf: "선반 예약",
+      selectTrolley: "트롤리 선택", close: "닫기", bookShelf: "트레이 선반",
       availableShelves: "사용 가능한 선반:", confirmTrayPlacement: "트레이 배치 확인",
       instructions: "안내:", sensorCheck: "센서 확인:", confirmPlacement: "배치 확인",
       checkingPlacement: "배치 확인 중", complete: "완료", placementConfirmed: "배치 확인됨",
@@ -195,7 +195,7 @@ const content = {
     footer: { copyright: "© 2024 TrayReturn. 全著作権所有。" },
     modals: {
       signIn: "サインイン", email: "メール", phone: "電話番号", cancel: "キャンセル",
-      selectTrolley: "トロリー選択", close: "閉じる", bookShelf: "棚を予約",
+      selectTrolley: "トロリー選択", close: "閉じる", bookShelf: "トレイ棚",
       availableShelves: "利用可能な棚:", confirmTrayPlacement: "トレイ配置確認",
       instructions: "説明:", sensorCheck: "センサーチェック:", confirmPlacement: "配置確認",
       checkingPlacement: "配置確認中", complete: "完了", placementConfirmed: "配置確認済み",
@@ -592,7 +592,7 @@ export default function Home() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white text-gray-800 p-6 max-w-4xl w-full mx-4 rounded-lg max-h-[90vh] overflow-y-auto">
             <h3 className="text-xl font-bold mb-4">{t.modals.selectTrolley}</h3>
-            <p className="text-sm text-gray-600 mb-4">Choose a trolley to return your tray:</p>
+            <p className="text-sm text-gray-600 mb-4">Выберите тележку для возврата подноса:</p>
             
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Trolley List */}
@@ -645,7 +645,7 @@ export default function Home() {
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
                   >
-                    Select This Trolley
+                    Выбрать эту тележку
                   </button>
                   <button 
                     onClick={() => setShowTrolleyList(false)}
@@ -658,7 +658,7 @@ export default function Home() {
               
               {/* Interactive Map */}
               <div className="bg-pink-50 rounded-lg p-4">
-                <h4 className="text-lg font-semibold mb-3 text-gray-800">Interactive Map</h4>
+                <h4 className="text-lg font-semibold mb-3 text-gray-800">Интерактивная карта</h4>
                 <div className="relative h-80 rounded-lg overflow-hidden">
                   <iframe
                     src={`https://www.openstreetmap.org/export/embed.html?bbox=30.284462%2C59.938451%2C30.286817%2C59.939558&layer=mapnik${mapTrolleyMarker ? `&marker=${mapTrolleyMarker.coordinates.lat}%2C${mapTrolleyMarker.coordinates.lng}` : ''}`}
@@ -678,7 +678,7 @@ export default function Home() {
                         mapTrolleyMarker.id === 2 ? 'top-32 right-24' :
                         'bottom-20 left-16'
                       }`}>
-                        {mapTrolleyMarker.name} - SELECTED
+                        {mapTrolleyMarker.name} - ВЫБРАНО
                       </div>
                     </div>
                   )}
@@ -686,10 +686,10 @@ export default function Home() {
                 
                 {/* Map Instructions */}
                 <div className="mt-3 text-sm text-gray-600">
-                  <p>📍 Click on a trolley to see its location on the map</p>
+                  <p>📍 Нажмите на тележку, чтобы увидеть её расположение на карте</p>
                   {mapTrolleyMarker && (
                     <p className="text-pink-600 font-medium">
-                      ✓ {mapTrolleyMarker.name} selected - {mapTrolleyMarker.availableSlots} slots available
+                      ✓ {mapTrolleyMarker.name} выбрана - {mapTrolleyMarker.availableSlots} мест доступно
                     </p>
                   )}
                 </div>
@@ -716,7 +716,7 @@ export default function Home() {
                   name="email"
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-300"
-                  placeholder="your@email.com"
+                  placeholder="ваш@email.com"
                 />
               </div>
               <div>
@@ -726,7 +726,7 @@ export default function Home() {
                   name="phone"
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-300"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="+7 (999) 123-4567"
                 />
               </div>
               <div className="flex gap-3">
@@ -754,11 +754,11 @@ export default function Home() {
             <div className="space-y-3">
               <div>
                 <p className="text-sm text-gray-600">{t.modals.email}</p>
-                <p className="font-medium">support@trayreturn.com</p>
+                <p className="font-medium">support@trayreturn.ru</p>
               </div>
               <div>
                 <p className="text-sm text-gray-600">{t.modals.phone}</p>
-                <p className="font-medium">+1 (555) 123-4567</p>
+                <p className="font-medium">+7 (999) 123-4567</p>
               </div>
             </div>
             <button 
@@ -815,14 +815,14 @@ export default function Home() {
               <div>
                 <h4 className="font-medium mb-2">{t.modals.instructions}</h4>
                 <ol className="text-sm text-gray-600 space-y-1 list-decimal list-inside">
-                  <li>Check trolley matches to booked one</li>
-                  <li>Check shelf matches to booked one</li>
-                  <li>Check the tray position</li>
+                  <li>Проверьте, что тележка соответствует забронированной</li>
+                  <li>Проверьте, что полка соответствует забронированной</li>
+                  <li>Проверьте положение подноса</li>
                 </ol>
               </div>
               <div>
                 <h4 className="font-medium mb-2">{t.modals.sensorCheck}</h4>
-                <p className="text-sm text-gray-600">Place your tray in the selected shelf and confirm placement</p>
+                <p className="text-sm text-gray-600">Поместите поднос в выбранную полку и подтвердите размещение</p>
               </div>
             </div>
             <div className="flex gap-3 mt-6">
@@ -855,7 +855,7 @@ export default function Home() {
                 style={{ width: `${checkingProgress}%` }}
               ></div>
             </div>
-            <p className="text-sm text-gray-600">{checkingProgress}% Complete</p>
+            <p className="text-sm text-gray-600">{checkingProgress}% Завершено</p>
           </div>
         </div>
       )}
@@ -888,7 +888,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-red-600">{t.modals.placementNotConfirmed}</h3>
-                <p className="text-sm text-gray-600 mb-4">Please check your tray placement and try again</p>
+                <p className="text-sm text-gray-600 mb-4">Проверьте размещение подноса и попробуйте снова</p>
                 <button 
                   onClick={resetChecking}
                   className="bg-pink-300 text-gray-800 px-6 py-2 font-medium hover:bg-pink-400 transition-colors rounded-lg"
@@ -910,7 +910,7 @@ export default function Home() {
             {!selectedCafe ? (
               // Cafe Selection Dropdown
               <div className="space-y-3">
-                <p className="text-sm text-gray-600 mb-4">Select a cafe to view menu and discounts:</p>
+                <p className="text-sm text-gray-600 mb-4">Выберите кафе для просмотра меню и скидок:</p>
                 <div className="space-y-2 max-h-64 overflow-y-auto">
                   {cafes.map((cafe) => (
                     <button
@@ -932,12 +932,12 @@ export default function Home() {
                     onClick={() => setSelectedCafe(null)}
                     className="text-sm text-gray-500 hover:text-gray-700"
                   >
-                    ← Back to cafes
+                    ← Назад к кафе
                   </button>
                 </div>
                 
                 <div className="bg-pink-50 rounded-lg p-3 mb-4">
-                  <p className="text-sm text-gray-600">Your balance: <span className="font-bold text-pink-400">{bonusBalance} points</span></p>
+                  <p className="text-sm text-gray-600">Ваш баланс: <span className="font-bold text-pink-400">{bonusBalance} баллов</span></p>
                 </div>
                 
                 <div className="space-y-3 max-h-64 overflow-y-auto">
@@ -959,7 +959,7 @@ export default function Home() {
                                 {canAfford && (
                                   <>
                                     <span className="text-pink-400 font-bold">{discountedPoints} pts</span>
-                                    <span className="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">-{discount} pts discount!</span>
+                                    <span className="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">-{discount} баллов скидка!</span>
                                   </>
                                 )}
                               </div>
@@ -973,7 +973,7 @@ export default function Home() {
                                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                             }`}
                           >
-                            {canAfford ? 'Order' : 'Insufficient'}
+                            {canAfford ? 'Заказать' : 'Недостаточно'}
                           </button>
                         </div>
                       </div>
