@@ -73,13 +73,6 @@ const content = {
       partnerRewards: "Partner Rewards",
       contactSupport: "Contact Support"
     },
-    security: {
-      title: "Security Verification",
-      checking: "Verifying your location...",
-      success: "Verification successful",
-      failed: "Access denied - Location mismatch",
-      retry: "Retry"
-    }
   },
   ru: {
     header: {
@@ -149,13 +142,6 @@ const content = {
       localCafes: "Местные кафе",
       partnerRewards: "Партнерские награды",
       contactSupport: "Связаться с поддержкой"
-    },
-    security: {
-      title: "Проверка безопасности",
-      checking: "Проверка вашего местоположения...",
-      success: "Проверка успешна",
-      failed: "Доступ запрещен - несоответствие местоположения",
-      retry: "Повторить"
     }
   },
   zh: {
@@ -226,13 +212,6 @@ const content = {
       localCafes: "当地咖啡厅",
       partnerRewards: "合作伙伴奖励",
       contactSupport: "联系支持"
-    },
-    security: {
-      title: "安全验证",
-      checking: "正在验证您的位置...",
-      success: "验证成功",
-      failed: "访问被拒绝 - 位置不匹配",
-      retry: "重试"
     }
   },
   ko: {
@@ -303,13 +282,6 @@ const content = {
       localCafes: "지역 카페",
       partnerRewards: "파트너 보상",
       contactSupport: "지원 문의"
-    },
-    security: {
-      title: "보안 확인",
-      checking: "위치를 확인하는 중...",
-      success: "확인 성공",
-      failed: "접근 거부 - 위치 불일치",
-      retry: "재시도"
     }
   },
   ja: {
@@ -380,13 +352,6 @@ const content = {
       localCafes: "地元カフェ",
       partnerRewards: "パートナー報酬",
       contactSupport: "サポートに連絡"
-    },
-    security: {
-      title: "セキュリティ確認",
-      checking: "位置を確認中...",
-      success: "確認成功",
-      failed: "アクセス拒否 - 位置不一致",
-      retry: "再試行"
     }
   }
 }
@@ -409,8 +374,7 @@ export default function Home() {
   const [checkingResult, setCheckingResult] = useState(null)
   const [bonusBalance] = useState(1250)
   const [language, setLanguage] = useState('en')
-  const [isLoading, setIsLoading] = useState(true)
-  const [securityCheck, setSecurityCheck] = useState({ passed: false, checking: true })
+  const [isLoading, setIsLoading] = useState(false)
   const [showTrolleyList, setShowTrolleyList] = useState(false)
   const [mapTrolleyMarker, setMapTrolleyMarker] = useState(null)
 
@@ -481,30 +445,6 @@ export default function Home() {
     { id: 8, name: 'Travel', description: 'Hotel and flight booking discounts', points: 500, discount: '12% off' }
   ]
 
-  // IP-based security check on page load
-  useEffect(() => {
-    const performSecurityCheck = async () => {
-      try {
-        // Simulate IP geolocation check
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        
-        // Simulate checking if IP matches restaurant location (Russia)
-        // In real implementation, you would check actual IP geolocation
-        const isLocationMatch = true // Always allow access for development
-        
-        setSecurityCheck({ passed: isLocationMatch, checking: false })
-        
-        if (isLocationMatch) {
-          setIsLoading(false)
-        }
-      } catch (error) {
-        console.error('Security check failed:', error)
-        setSecurityCheck({ passed: false, checking: false })
-      }
-    }
-
-    performSecurityCheck()
-  }, [])
 
   const handleSignIn = (email: string, phone: string) => {
     setIsSignedIn(true)
@@ -574,58 +514,7 @@ export default function Home() {
     setSelectedShelf(null)
   }
 
-  const retrySecurityCheck = () => {
-    setSecurityCheck({ passed: false, checking: true })
-    setIsLoading(true)
-    
-    // Retry the security check
-    setTimeout(() => {
-      const isLocationMatch = true // Always allow access for development
-      setSecurityCheck({ passed: isLocationMatch, checking: false })
-      if (isLocationMatch) {
-        setIsLoading(false)
-      }
-    }, 1000)
-  }
 
-  // Loading screen with security check
-  if (isLoading || securityCheck.checking) {
-    return (
-      <div className="min-h-screen bg-pink-50 flex items-center justify-center">
-        <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4 text-center shadow-lg">
-          <div className="w-16 h-16 border-4 border-gray-300 border-t-pink-300 rounded-full mx-auto mb-6 animate-spin"></div>
-          <h2 className="text-xl font-bold mb-4 text-gray-800">{t.security.title}</h2>
-          <p className="text-gray-600 mb-6">{t.security.checking}</p>
-          <div className="bg-gray-200 rounded-full h-2">
-            <div className="bg-pink-300 h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  // Security check failed screen
-  if (!securityCheck.passed) {
-    return (
-      <div className="min-h-screen bg-pink-50 flex items-center justify-center">
-        <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4 text-center shadow-lg">
-          <div className="w-16 h-16 bg-red-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </div>
-          <h2 className="text-xl font-bold mb-4 text-gray-800">{t.security.failed}</h2>
-          <p className="text-gray-600 mb-6">Your IP address does not match the restaurant location.</p>
-          <button 
-            onClick={retrySecurityCheck}
-            className="bg-pink-300 text-gray-800 px-6 py-2 font-medium hover:bg-pink-400 transition-colors rounded-lg"
-          >
-            {t.security.retry}
-          </button>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <main className={`min-h-screen bg-pink-50 text-gray-800 ${getFontClass(language)}`}>
