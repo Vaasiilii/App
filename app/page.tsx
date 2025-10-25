@@ -590,51 +590,111 @@ export default function Home() {
       {/* Trolley Selection Modal */}
       {showTrolleyList && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white text-gray-800 p-6 max-w-md w-full mx-4 rounded-lg">
+          <div className="bg-white text-gray-800 p-6 max-w-4xl w-full mx-4 rounded-lg max-h-[90vh] overflow-y-auto">
             <h3 className="text-xl font-bold mb-4">{t.modals.selectTrolley}</h3>
             <p className="text-sm text-gray-600 mb-4">Choose a trolley to return your tray:</p>
-            <div className="space-y-3">
-              {trolleys.map((trolley) => (
-                <button
-                  key={trolley.id}
-                  onClick={() => handleTrolleySelection(trolley)}
-                  disabled={trolley.availableSlots === 0}
-                  className={`w-full text-left p-4 border-2 rounded-lg transition-colors ${
-                    trolley.availableSlots > 0 
-                      ? 'border-pink-200 hover:border-pink-300 hover:bg-pink-50' 
-                      : 'border-gray-200 bg-gray-50 cursor-not-allowed'
-                  }`}
-                >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h4 className="font-medium">{trolley.name}</h4>
-                      <p className="text-sm text-gray-600">{trolley.location}</p>
-                      <p className="text-xs text-gray-500">
-                        {trolley.coordinates.lat}, {trolley.coordinates.lng}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <div className={`text-sm font-medium ${
-                        trolley.availableSlots > 0 ? 'text-gray-800' : 'text-gray-400'
-                      }`}>
-                        {trolley.availableSlots}/{trolley.totalSlots} {t.trolleys.slots}
+            
+            <div className="grid lg:grid-cols-2 gap-6">
+              {/* Trolley List */}
+              <div className="space-y-3">
+                {trolleys.map((trolley) => (
+                  <button
+                    key={trolley.id}
+                    onClick={() => setMapTrolleyMarker(trolley)}
+                    disabled={trolley.availableSlots === 0}
+                    className={`w-full text-left p-4 border-2 rounded-lg transition-colors ${
+                      trolley.availableSlots > 0 
+                        ? 'border-pink-200 hover:border-pink-300 hover:bg-pink-50' 
+                        : 'border-gray-200 bg-gray-50 cursor-not-allowed'
+                    } ${
+                      mapTrolleyMarker?.id === trolley.id ? 'border-pink-400 bg-pink-100' : ''
+                    }`}
+                  >
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h4 className="font-medium">{trolley.name}</h4>
+                        <p className="text-sm text-gray-600">{trolley.location}</p>
+                        <p className="text-xs text-gray-500">
+                          {trolley.coordinates.lat}, {trolley.coordinates.lng}
+                        </p>
                       </div>
-                      <span className={`text-xs px-2 py-1 rounded ${
-                        trolley.availableSlots > 0 ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'
-                      }`}>
-                        {trolley.availableSlots > 0 ? t.trolleys.available : t.trolleys.full}
-                      </span>
+                      <div className="text-right">
+                        <div className={`text-sm font-medium ${
+                          trolley.availableSlots > 0 ? 'text-gray-800' : 'text-gray-400'
+                        }`}>
+                          {trolley.availableSlots}/{trolley.totalSlots} {t.trolleys.slots}
+                        </div>
+                        <span className={`text-xs px-2 py-1 rounded ${
+                          trolley.availableSlots > 0 ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'
+                        }`}>
+                          {trolley.availableSlots > 0 ? t.trolleys.available : t.trolleys.full}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </button>
-              ))}
+                  </button>
+                ))}
+                
+                {/* Action Buttons */}
+                <div className="flex gap-3 mt-6">
+                  <button 
+                    onClick={() => mapTrolleyMarker && handleTrolleySelection(mapTrolleyMarker)}
+                    disabled={!mapTrolleyMarker || mapTrolleyMarker.availableSlots === 0}
+                    className={`px-6 py-2 font-medium rounded-lg transition-colors flex-1 ${
+                      mapTrolleyMarker && mapTrolleyMarker.availableSlots > 0
+                        ? 'bg-pink-300 text-gray-800 hover:bg-pink-400'
+                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    }`}
+                  >
+                    Select This Trolley
+                  </button>
+                  <button 
+                    onClick={() => setShowTrolleyList(false)}
+                    className="border border-pink-300 text-gray-800 px-6 py-2 font-medium hover:bg-pink-100 transition-colors rounded-lg flex-1"
+                  >
+                    {t.modals.close}
+                  </button>
+                </div>
+              </div>
+              
+              {/* Interactive Map */}
+              <div className="bg-pink-50 rounded-lg p-4">
+                <h4 className="text-lg font-semibold mb-3 text-gray-800">Interactive Map</h4>
+                <div className="relative h-80 rounded-lg overflow-hidden">
+                  <iframe
+                    src={`https://www.openstreetmap.org/export/embed.html?bbox=30.284462%2C59.938451%2C30.286817%2C59.939558&layer=mapnik${mapTrolleyMarker ? `&marker=${mapTrolleyMarker.coordinates.lat}%2C${mapTrolleyMarker.coordinates.lng}` : ''}`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                  
+                  {/* Selected Trolley Marker Overlay */}
+                  {mapTrolleyMarker && (
+                    <div className="absolute inset-0 pointer-events-none">
+                      <div className={`absolute bg-pink-300 text-gray-800 px-3 py-2 text-sm font-bold rounded shadow-lg border-2 border-pink-400 ${
+                        mapTrolleyMarker.id === 1 ? 'top-16 left-20' :
+                        mapTrolleyMarker.id === 2 ? 'top-32 right-24' :
+                        'bottom-20 left-16'
+                      }`}>
+                        {mapTrolleyMarker.name} - SELECTED
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Map Instructions */}
+                <div className="mt-3 text-sm text-gray-600">
+                  <p>📍 Click on a trolley to see its location on the map</p>
+                  {mapTrolleyMarker && (
+                    <p className="text-pink-600 font-medium">
+                      ✓ {mapTrolleyMarker.name} selected - {mapTrolleyMarker.availableSlots} slots available
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
-            <button 
-              onClick={() => setShowTrolleyList(false)}
-              className="bg-pink-300 text-gray-800 px-6 py-2 font-medium hover:bg-pink-400 transition-colors w-full mt-4 rounded-lg"
-            >
-              {t.modals.close}
-            </button>
           </div>
         </div>
       )}
