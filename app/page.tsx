@@ -1,28 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-// Language content with Asian languages
+// Language content
 const content = {
   en: {
-    header: {
-      title: "TrayReturn",
-      contact: "Contact"
-    },
+    header: { title: "TrayReturn", contact: "Contact" },
     howItWorks: {
       title: "How It Works",
-      step1: {
-        title: "Show QR Code",
-        description: "Open your QR code from your personal account and show it to the cashier. If you don't have a phone, give your phone number to register the trolley."
-      },
-      step2: {
-        title: "Select Empty Place",
-        description: "When you are done with the food, go to the service, select an empty place for the tray on the cart and take it."
-      },
-      step3: {
-        title: "Earn Rewards",
-        description: "Get bonus points redeemable at local cafes and partner services."
-      }
+      step1: { title: "Show QR Code", description: "Open your QR code from your personal account and show it to the cashier." },
+      step2: { title: "Select Empty Place", description: "When you are done with the food, go to the service, select an empty place for the tray on the cart." },
+      step3: { title: "Earn Rewards", description: "Get bonus points redeemable at local cafes and partner services." }
     },
     hero: {
       title: "Tray Return",
@@ -44,55 +32,25 @@ const content = {
       full: "Full",
       slots: "slots"
     },
-    footer: {
-      copyright: "© 2024 TrayReturn. All rights reserved."
-    },
+    footer: { copyright: "© 2024 TrayReturn. All rights reserved." },
     modals: {
-      signIn: "Sign In",
-      email: "Email",
-      phone: "Phone Number",
-      cancel: "Cancel",
-      selectTrolley: "Select Trolley",
-      interactiveMap: "Interactive Map",
-      availableTrolleys: "Available Trolleys",
-      close: "Close",
-      bookShelf: "Book Shelf",
-      availableShelves: "Available Shelves:",
-      confirmTrayPlacement: "Confirm Tray Placement",
-      instructions: "Instructions:",
-      sensorCheck: "Sensor Check:",
-      confirmPlacement: "Confirm Placement",
-      checkingPlacement: "Checking Placement",
-      complete: "Complete",
-      placementConfirmed: "Placement Confirmed",
-      placementNotConfirmed: "Placement Not Confirmed",
-      earnedPoints: "You earned 10 bonus points!",
-      continue: "Continue",
-      tryAgain: "Try Again",
-      localCafes: "Local Cafes",
-      partnerRewards: "Partner Rewards",
-      contactSupport: "Contact Support"
-    },
+      signIn: "Sign In", email: "Email", phone: "Phone Number", cancel: "Cancel",
+      selectTrolley: "Select Trolley", close: "Close", bookShelf: "Book Shelf",
+      availableShelves: "Available Shelves:", confirmTrayPlacement: "Confirm Tray Placement",
+      instructions: "Instructions:", sensorCheck: "Sensor Check:", confirmPlacement: "Confirm Placement",
+      checkingPlacement: "Checking Placement", complete: "Complete", placementConfirmed: "Placement Confirmed",
+      placementNotConfirmed: "Placement Not Confirmed", earnedPoints: "You earned 10 bonus points!",
+      continue: "Continue", tryAgain: "Try Again", localCafes: "Local Cafes",
+      partnerRewards: "Partner Rewards", contactSupport: "Contact Support"
+    }
   },
   ru: {
-    header: {
-      title: "TrayReturn",
-      contact: "Контакты"
-    },
+    header: { title: "TrayReturn", contact: "Контакты" },
     howItWorks: {
       title: "Как это работает",
-      step1: {
-        title: "Показать QR-код",
-        description: "Откройте QR-код из вашего личного аккаунта и покажите его кассиру. Если у вас нет телефона, назовите номер телефона для регистрации тележки."
-      },
-      step2: {
-        title: "Выберите свободное место",
-        description: "Когда вы закончили с едой, идите к сервису, выберите свободное место для подноса на тележке и возьмите его."
-      },
-      step3: {
-        title: "Получите награды",
-        description: "Получайте бонусные баллы, которые можно обменять в местных кафе и партнерских сервисах."
-      }
+      step1: { title: "Показать QR-код", description: "Откройте QR-код из вашего личного аккаунта и покажите его кассиру." },
+      step2: { title: "Выберите свободное место", description: "Когда вы закончили с едой, идите к сервису, выберите свободное место для подноса на тележке." },
+      step3: { title: "Получите награды", description: "Получайте бонусные баллы, которые можно обменять в местных кафе и партнерских сервисах." }
     },
     hero: {
       title: "Возврат подносов",
@@ -114,55 +72,25 @@ const content = {
       full: "Занято",
       slots: "мест"
     },
-    footer: {
-      copyright: "© 2024 TrayReturn. Все права защищены."
-    },
+    footer: { copyright: "© 2024 TrayReturn. Все права защищены." },
     modals: {
-      signIn: "Войти",
-      email: "Email",
-      phone: "Номер телефона",
-      cancel: "Отмена",
-      selectTrolley: "Выбрать тележку",
-      interactiveMap: "Интерактивная карта",
-      availableTrolleys: "Доступные тележки",
-      close: "Закрыть",
-      bookShelf: "Забронировать полку",
-      availableShelves: "Доступные полки:",
-      confirmTrayPlacement: "Подтвердить размещение подноса",
-      instructions: "Инструкции:",
-      sensorCheck: "Проверка датчика:",
-      confirmPlacement: "Подтвердить размещение",
-      checkingPlacement: "Проверка размещения",
-      complete: "Завершено",
-      placementConfirmed: "Размещение подтверждено",
-      placementNotConfirmed: "Размещение не подтверждено",
-      earnedPoints: "Вы заработали 10 бонусных баллов!",
-      continue: "Продолжить",
-      tryAgain: "Попробовать снова",
-      localCafes: "Местные кафе",
-      partnerRewards: "Партнерские награды",
-      contactSupport: "Связаться с поддержкой"
+      signIn: "Войти", email: "Email", phone: "Номер телефона", cancel: "Отмена",
+      selectTrolley: "Выбрать тележку", close: "Закрыть", bookShelf: "Забронировать полку",
+      availableShelves: "Доступные полки:", confirmTrayPlacement: "Подтвердить размещение подноса",
+      instructions: "Инструкции:", sensorCheck: "Проверка датчика:", confirmPlacement: "Подтвердить размещение",
+      checkingPlacement: "Проверка размещения", complete: "Завершено", placementConfirmed: "Размещение подтверждено",
+      placementNotConfirmed: "Размещение не подтверждено", earnedPoints: "Вы заработали 10 бонусных баллов!",
+      continue: "Продолжить", tryAgain: "Попробовать снова", localCafes: "Местные кафе",
+      partnerRewards: "Партнерские награды", contactSupport: "Связаться с поддержкой"
     }
   },
   zh: {
-    header: {
-      title: "TrayReturn",
-      contact: "联系我们"
-    },
+    header: { title: "TrayReturn", contact: "联系我们" },
     howItWorks: {
       title: "使用方法",
-      step1: {
-        title: "显示二维码",
-        description: "从您的个人账户打开二维码并向收银员展示。如果您没有手机，请提供您的电话号码来注册手推车。"
-      },
-      step2: {
-        title: "选择空位",
-        description: "当您用完餐后，前往服务台，在手推车上选择一个空位放置托盘。"
-      },
-      step3: {
-        title: "获得奖励",
-        description: "获得可在当地咖啡厅和合作伙伴服务中兑换的奖励积分。"
-      }
+      step1: { title: "显示二维码", description: "从您的个人账户打开二维码并向收银员展示。" },
+      step2: { title: "选择空位", description: "当您用完餐后，前往服务台，在手推车上选择一个空位放置托盘。" },
+      step3: { title: "获得奖励", description: "获得可在当地咖啡厅和合作伙伴服务中兑换的奖励积分。" }
     },
     hero: {
       title: "托盘归还",
@@ -184,55 +112,25 @@ const content = {
       full: "已满",
       slots: "位置"
     },
-    footer: {
-      copyright: "© 2024 TrayReturn. 版权所有。"
-    },
+    footer: { copyright: "© 2024 TrayReturn. 版权所有。" },
     modals: {
-      signIn: "登录",
-      email: "邮箱",
-      phone: "电话号码",
-      cancel: "取消",
-      selectTrolley: "选择手推车",
-      interactiveMap: "交互式地图",
-      availableTrolleys: "可用手推车",
-      close: "关闭",
-      bookShelf: "预订货架",
-      availableShelves: "可用货架：",
-      confirmTrayPlacement: "确认托盘放置",
-      instructions: "说明：",
-      sensorCheck: "传感器检查：",
-      confirmPlacement: "确认放置",
-      checkingPlacement: "检查放置",
-      complete: "完成",
-      placementConfirmed: "放置已确认",
-      placementNotConfirmed: "放置未确认",
-      earnedPoints: "您获得了10个奖励积分！",
-      continue: "继续",
-      tryAgain: "重试",
-      localCafes: "当地咖啡厅",
-      partnerRewards: "合作伙伴奖励",
-      contactSupport: "联系支持"
+      signIn: "登录", email: "邮箱", phone: "电话号码", cancel: "取消",
+      selectTrolley: "选择手推车", close: "关闭", bookShelf: "预订货架",
+      availableShelves: "可用货架：", confirmTrayPlacement: "确认托盘放置",
+      instructions: "说明：", sensorCheck: "传感器检查：", confirmPlacement: "确认放置",
+      checkingPlacement: "检查放置", complete: "完成", placementConfirmed: "放置已确认",
+      placementNotConfirmed: "放置未确认", earnedPoints: "您获得了10个奖励积分！",
+      continue: "继续", tryAgain: "重试", localCafes: "当地咖啡厅",
+      partnerRewards: "合作伙伴奖励", contactSupport: "联系支持"
     }
   },
   ko: {
-    header: {
-      title: "TrayReturn",
-      contact: "문의하기"
-    },
+    header: { title: "TrayReturn", contact: "문의하기" },
     howItWorks: {
       title: "사용 방법",
-      step1: {
-        title: "QR 코드 표시",
-        description: "개인 계정에서 QR 코드를 열어 계산원에게 보여주세요. 휴대폰이 없다면 전화번호를 제공하여 트롤리를 등록하세요."
-      },
-      step2: {
-        title: "빈 자리 선택",
-        description: "음식을 다 드신 후 서비스로 가서 트롤리에서 빈 자리를 선택하고 트레이를 가져가세요."
-      },
-      step3: {
-        title: "보상 획득",
-        description: "지역 카페와 파트너 서비스에서 사용할 수 있는 보너스 포인트를 받으세요."
-      }
+      step1: { title: "QR 코드 표시", description: "개인 계정에서 QR 코드를 열어 계산원에게 보여주세요." },
+      step2: { title: "빈 자리 선택", description: "음식을 다 드신 후 서비스로 가서 트롤리에서 빈 자리를 선택하세요." },
+      step3: { title: "보상 획득", description: "지역 카페와 파트너 서비스에서 사용할 수 있는 보너스 포인트를 받으세요." }
     },
     hero: {
       title: "트레이 반납",
@@ -254,55 +152,25 @@ const content = {
       full: "가득 참",
       slots: "슬롯"
     },
-    footer: {
-      copyright: "© 2024 TrayReturn. 모든 권리 보유."
-    },
+    footer: { copyright: "© 2024 TrayReturn. 모든 권리 보유." },
     modals: {
-      signIn: "로그인",
-      email: "이메일",
-      phone: "전화번호",
-      cancel: "취소",
-      selectTrolley: "트롤리 선택",
-      interactiveMap: "인터랙티브 맵",
-      availableTrolleys: "사용 가능한 트롤리",
-      close: "닫기",
-      bookShelf: "선반 예약",
-      availableShelves: "사용 가능한 선반:",
-      confirmTrayPlacement: "트레이 배치 확인",
-      instructions: "안내:",
-      sensorCheck: "센서 확인:",
-      confirmPlacement: "배치 확인",
-      checkingPlacement: "배치 확인 중",
-      complete: "완료",
-      placementConfirmed: "배치 확인됨",
-      placementNotConfirmed: "배치 확인되지 않음",
-      earnedPoints: "10 보너스 포인트를 획득했습니다!",
-      continue: "계속",
-      tryAgain: "다시 시도",
-      localCafes: "지역 카페",
-      partnerRewards: "파트너 보상",
-      contactSupport: "지원 문의"
+      signIn: "로그인", email: "이메일", phone: "전화번호", cancel: "취소",
+      selectTrolley: "트롤리 선택", close: "닫기", bookShelf: "선반 예약",
+      availableShelves: "사용 가능한 선반:", confirmTrayPlacement: "트레이 배치 확인",
+      instructions: "안내:", sensorCheck: "센서 확인:", confirmPlacement: "배치 확인",
+      checkingPlacement: "배치 확인 중", complete: "완료", placementConfirmed: "배치 확인됨",
+      placementNotConfirmed: "배치 확인되지 않음", earnedPoints: "10 보너스 포인트를 획득했습니다!",
+      continue: "계속", tryAgain: "다시 시도", localCafes: "지역 카페",
+      partnerRewards: "파트너 보상", contactSupport: "지원 문의"
     }
   },
   ja: {
-    header: {
-      title: "TrayReturn",
-      contact: "お問い合わせ"
-    },
+    header: { title: "TrayReturn", contact: "お問い合わせ" },
     howItWorks: {
       title: "使い方",
-      step1: {
-        title: "QRコードを表示",
-        description: "個人アカウントからQRコードを開いてレジ係に見せてください。携帯電話がない場合は、電話番号を提供してトロリーを登録してください。"
-      },
-      step2: {
-        title: "空いている場所を選択",
-        description: "食事が終わったら、サービスに行き、カートで空いている場所を選択してトレイを取りに行ってください。"
-      },
-      step3: {
-        title: "報酬を獲得",
-        description: "地元のカフェやパートナーサービスで使用できるボーナスポイントを獲得してください。"
-      }
+      step1: { title: "QRコードを表示", description: "個人アカウントからQRコードを開いてレジ係に見せてください。" },
+      step2: { title: "空いている場所を選択", description: "食事が終わったら、サービスに行き、カートで空いている場所を選択してください。" },
+      step3: { title: "報酬を獲得", description: "地元のカフェやパートナーサービスで使用できるボーナスポイントを獲得してください。" }
     },
     hero: {
       title: "トレイ返却",
@@ -324,34 +192,16 @@ const content = {
       full: "満杯",
       slots: "スロット"
     },
-    footer: {
-      copyright: "© 2024 TrayReturn. 全著作権所有。"
-    },
+    footer: { copyright: "© 2024 TrayReturn. 全著作権所有。" },
     modals: {
-      signIn: "サインイン",
-      email: "メール",
-      phone: "電話番号",
-      cancel: "キャンセル",
-      selectTrolley: "トロリー選択",
-      interactiveMap: "インタラクティブマップ",
-      availableTrolleys: "利用可能なトロリー",
-      close: "閉じる",
-      bookShelf: "棚を予約",
-      availableShelves: "利用可能な棚:",
-      confirmTrayPlacement: "トレイ配置確認",
-      instructions: "説明:",
-      sensorCheck: "センサーチェック:",
-      confirmPlacement: "配置確認",
-      checkingPlacement: "配置確認中",
-      complete: "完了",
-      placementConfirmed: "配置確認済み",
-      placementNotConfirmed: "配置確認されていません",
-      earnedPoints: "10ボーナスポイントを獲得しました！",
-      continue: "続行",
-      tryAgain: "再試行",
-      localCafes: "地元カフェ",
-      partnerRewards: "パートナー報酬",
-      contactSupport: "サポートに連絡"
+      signIn: "サインイン", email: "メール", phone: "電話番号", cancel: "キャンセル",
+      selectTrolley: "トロリー選択", close: "閉じる", bookShelf: "棚を予約",
+      availableShelves: "利用可能な棚:", confirmTrayPlacement: "トレイ配置確認",
+      instructions: "説明:", sensorCheck: "センサーチェック:", confirmPlacement: "配置確認",
+      checkingPlacement: "配置確認中", complete: "完了", placementConfirmed: "配置確認済み",
+      placementNotConfirmed: "配置確認されていません", earnedPoints: "10ボーナスポイントを獲得しました！",
+      continue: "続行", tryAgain: "再試行", localCafes: "地元カフェ",
+      partnerRewards: "パートナー報酬", contactSupport: "サポートに連絡"
     }
   }
 }
@@ -359,13 +209,12 @@ const content = {
 export default function Home() {
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [showSignIn, setShowSignIn] = useState(false)
-  const [showTrolleySelection, setShowTrolleySelection] = useState(false)
+  const [showTrolleyList, setShowTrolleyList] = useState(false)
   const [showContact, setShowContact] = useState(false)
   const [showTrayPlacement, setShowTrayPlacement] = useState(false)
   const [showCafeOptions, setShowCafeOptions] = useState(false)
   const [showRewards, setShowRewards] = useState(false)
   const [selectedCafe, setSelectedCafe] = useState<any>(null)
-  const [showCafeMenu, setShowCafeMenu] = useState(false)
   const [selectedTrolley, setSelectedTrolley] = useState(null)
   const [selectedShelf, setSelectedShelf] = useState(null)
   const [showShelfBooking, setShowShelfBooking] = useState(false)
@@ -374,8 +223,6 @@ export default function Home() {
   const [checkingResult, setCheckingResult] = useState(null)
   const [bonusBalance] = useState(1250)
   const [language, setLanguage] = useState('en')
-  const [isLoading, setIsLoading] = useState(false)
-  const [showTrolleyList, setShowTrolleyList] = useState(false)
   const [mapTrolleyMarker, setMapTrolleyMarker] = useState(null)
 
   const t = content[language as keyof typeof content]
@@ -445,7 +292,6 @@ export default function Home() {
     { id: 8, name: 'Travel', description: 'Hotel and flight booking discounts', points: 500, discount: '12% off' }
   ]
 
-
   const handleSignIn = (email: string, phone: string) => {
     setIsSignedIn(true)
     setShowSignIn(false)
@@ -489,21 +335,11 @@ export default function Home() {
     }, 1000)
   }
 
-  const handleTrolleyClick = (trolley) => {
-    setSelectedTrolley(trolley)
-    setShowShelfBooking(true)
-  }
-
   const handleTrolleySelection = (trolley) => {
     setSelectedTrolley(trolley)
     setMapTrolleyMarker(trolley)
     setShowTrolleyList(false)
     setShowShelfBooking(true)
-  }
-
-  const handleCafeSelection = (cafe) => {
-    setSelectedCafe(cafe.name)
-    setShowCafeMenu(true)
   }
 
   const resetChecking = () => {
@@ -513,8 +349,6 @@ export default function Home() {
     setSelectedTrolley(null)
     setSelectedShelf(null)
   }
-
-
 
   return (
     <main className={`min-h-screen bg-pink-50 text-gray-800 ${getFontClass(language)}`}>
@@ -719,7 +553,7 @@ export default function Home() {
                       ? 'border-pink-200 hover:border-pink-300 hover:bg-pink-50' 
                       : 'border-gray-200 bg-gray-50 cursor-not-allowed'
                   }`}
-                  onClick={() => trolley.availableSlots > 0 && handleTrolleyClick(trolley)}
+                  onClick={() => trolley.availableSlots > 0 && handleTrolleySelection(trolley)}
                 >
                   <h4 className="text-lg font-bold mb-2 text-gray-800">{trolley.name}</h4>
                   <p className="text-sm mb-2 text-gray-600">{trolley.location}</p>
@@ -1133,5 +967,3 @@ export default function Home() {
     </main>
   )
 }
-
-
