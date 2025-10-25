@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Futura Medium';
+  src: url('https://fonts-online.ru/fonts/futura-medium-cy-rus-me') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@layer base {
+  html {
+    font-family: 'Futura Medium', 'Inter', 'Noto Sans SC', 'Noto Sans KR', 'Noto Sans JP', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #fdf2f8;
+    color: #374151;
+  }
+  
+  /* Language-specific font families */
+  .font-chinese {
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  }
+  
+  .font-korean {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  }
+  
+  .font-japanese {
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+  }
+  
+  .font-russian {
+    font-family: 'Futura Medium', 'Inter', system-ui, sans-serif;
+  }
+  
+  .font-english {
+    font-family: 'Futura Medium', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-pink-300 text-gray-800 font-medium py-3 px-6 text-lg transition-colors duration-200 hover:bg-pink-400 rounded-lg;
+  }
+  
+  .btn-secondary {
+    @apply border border-pink-300 text-gray-800 font-medium py-3 px-6 text-lg transition-colors duration-200 hover:bg-pink-300 rounded-lg;
+  }
+  
+  .btn-minimal {
+    @apply bg-pink-200 text-gray-800 font-medium py-2 px-4 text-base transition-colors duration-200 hover:bg-pink-300 rounded-lg;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-8;
+  }
+  
+  .container-max {
+    @apply max-w-6xl mx-auto;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 1s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 1s ease-out;
+  }
+  
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
