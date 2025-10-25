@@ -399,7 +399,7 @@ export default function Home() {
   const [showTrayPlacement, setShowTrayPlacement] = useState(false)
   const [showCafeOptions, setShowCafeOptions] = useState(false)
   const [showRewards, setShowRewards] = useState(false)
-  const [selectedCafe, setSelectedCafe] = useState('')
+  const [selectedCafe, setSelectedCafe] = useState<any>(null)
   const [showCafeMenu, setShowCafeMenu] = useState(false)
   const [selectedTrolley, setSelectedTrolley] = useState(null)
   const [selectedShelf, setSelectedShelf] = useState(null)
@@ -1132,7 +1132,7 @@ export default function Home() {
                   {cafes.map((cafe) => (
                     <button
                       key={cafe.id}
-                      onClick={() => setSelectedCafe(cafe.name)}
+                      onClick={() => setSelectedCafe(cafe)}
                       className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-pink-50 hover:border-pink-300 transition-colors"
                     >
                       <h4 className="font-medium">{cafe.name}</h4>
@@ -1146,7 +1146,7 @@ export default function Home() {
                 <div className="flex justify-between items-center">
                   <h4 className="text-lg font-medium">{selectedCafe.name}</h4>
                   <button 
-                    onClick={() => setSelectedCafe('')}
+                    onClick={() => setSelectedCafe(null)}
                     className="text-sm text-gray-500 hover:text-gray-700"
                   >
                     ← Back to cafes
@@ -1203,7 +1203,7 @@ export default function Home() {
             <button 
               onClick={() => {
                 setShowCafeOptions(false)
-                setSelectedCafe('')
+                setSelectedCafe(null)
               }}
               className="bg-pink-300 text-gray-800 px-6 py-2 font-medium hover:bg-pink-400 transition-colors w-full mt-4 rounded-lg"
             >
